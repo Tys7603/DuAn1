@@ -40,9 +40,7 @@ public class DbHelper extends SQLiteOpenHelper {
             "( '11' , 'Xôi Xéo' , '7' , '6' ), " +
             "( '12' , 'Xôi Gà' , '7' , '6' )";
 
-    public final String inToGioHang = "INSERT INTO GioHang VALUES" +
-            "( '1' , 'Pizza Hawaii' , '50', '1', '1' ), " +
-            "(  '2' , 'BURGER Gà KFC' , '40' , '1', '4' ) ";
+
 
     public final String inToPhieuMua = "INSERT INTO PhieuMua VALUES" +
             "( '1' , '1' , '1' , 'Pizza Hawaii', '5', '2022/11/25', '252' ) ," +
@@ -99,7 +97,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 "FOREIGN KEY (maTA) REFERENCES ThucAn (maTA)" +
                 ")";
         sqLiteDatabase.execSQL(GioHang);
-        sqLiteDatabase.execSQL(inToGioHang);
+
 
         String PhieuMua = "CREATE TABLE PhieuMua (" +
                 "maPM integer primary key autoincrement," +

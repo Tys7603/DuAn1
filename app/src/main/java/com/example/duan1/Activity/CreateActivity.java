@@ -39,8 +39,6 @@ public class CreateActivity extends AppCompatActivity {
         btnSingUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
                 if(validate() > 0){
                     NguoiDung nguoiDung = new NguoiDung();
                     nguoiDung.setUserName(etUser.getText().toString());
@@ -76,12 +74,12 @@ public class CreateActivity extends AppCompatActivity {
 
     public int validate(){
         List<NguoiDung> list = nguoiDungDao.getDSND();
+        Toast.makeText(this, "" + list, Toast.LENGTH_SHORT).show();
         int check = 1;
         if(etUser.getText().toString().isEmpty() || etPass.getText().toString().isEmpty() || etND.getText().toString().isEmpty()){
             Toast.makeText(this, "Bạn cần điền đầy đủ thông tin", Toast.LENGTH_SHORT).show();
             check = 0;
         }else {
-
             for (int i = 0 ; i < list.size() ; i++){
                 if (etUser.getText().toString().equals(list.get(i).getUserName())){
                     etUser.setError("Tài khoản đã tồn tại");

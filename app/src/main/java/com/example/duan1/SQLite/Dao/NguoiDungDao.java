@@ -28,7 +28,8 @@ public class NguoiDungDao {
         values.put("tenND", nguoiDung.getTenND());
         values.put("userName", nguoiDung.getUserName());
         values.put("passWord", nguoiDung.getPassWord());
-
+        values.put("tien", 0);
+        values.put("diaChi" , "");
         return db.insert("NguoiDung", null, values);
     }
 
@@ -74,7 +75,6 @@ public class NguoiDungDao {
             nguoiDung.setTenND(cursor.getString(cursor.getColumnIndex("tenND")));
             nguoiDung.setDiaChi(cursor.getString(cursor.getColumnIndex("diaChi")));
             nguoiDung.setTien(Integer.parseInt(cursor.getString(cursor.getColumnIndex("tien"))));
-
             list.add(nguoiDung);
         }
 
@@ -82,6 +82,7 @@ public class NguoiDungDao {
         return list;
 
     }
+
 
     public List<NguoiDung> getDSND (){
         String sql = "SELECT * FROM NguoiDung";
