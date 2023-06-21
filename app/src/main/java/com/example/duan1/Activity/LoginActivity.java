@@ -78,7 +78,7 @@ public class LoginActivity extends AppCompatActivity {
                         if (adminDao.checkLogin(user,pass)){
                             Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
                             remember(user,pass,checkBox.isChecked());
-
+                            rememberUser(user);
                             Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
                             intent.putExtra("user",user);
                             startActivity(intent);
@@ -89,6 +89,7 @@ public class LoginActivity extends AppCompatActivity {
                         if(nguoiDungDao.checkLogin(user, pass)){
                             Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
                             remember(user,pass,checkBox.isChecked());
+                            rememberUser(user);
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             intent.putExtra("user",user);
                             startActivity(intent);
@@ -117,6 +118,12 @@ public class LoginActivity extends AppCompatActivity {
             editor.clear();
         }
         editor.commit();
+    }
+    public void rememberUser(String u){
+        SharedPreferences sharedPreferences = getSharedPreferences("rememberUser", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("user",u);
+        editor.apply();
     }
     public int validate(){
         if(etUser.getText().toString().isEmpty() || etPass.getText().toString().isEmpty()){

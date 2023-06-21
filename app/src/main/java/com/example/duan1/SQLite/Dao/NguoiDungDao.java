@@ -28,8 +28,8 @@ public class NguoiDungDao {
         values.put("tenND", nguoiDung.getTenND());
         values.put("userName", nguoiDung.getUserName());
         values.put("passWord", nguoiDung.getPassWord());
-        values.put("tien", 0);
-        values.put("diaChi" , "");
+        values.put("tien", nguoiDung.getTien());
+        values.put("diaChi" , nguoiDung.getDiaChi());
         return db.insert("NguoiDung", null, values);
     }
 

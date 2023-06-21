@@ -6,6 +6,7 @@ import androidx.cardview.widget.CardView;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,11 +45,13 @@ public class CreateActivity extends AppCompatActivity {
                     nguoiDung.setUserName(etUser.getText().toString());
                     nguoiDung.setPassWord(etPass.getText().toString());
                     nguoiDung.setTenND(etND.getText().toString());
+                    nguoiDung.setTien(0);
+                    nguoiDung.setDiaChi("");
                     if(nguoiDungDao.insert(nguoiDung) > 0){
                         Toast.makeText(CreateActivity.this, "Tạo tài khoản thành công", Toast.LENGTH_SHORT).show();
                         etUser.setText("");
                         etPass.setText("");
-                       etND.setText("");
+                        etND.setText("");
                     }else {
                         Toast.makeText(CreateActivity.this, "Tạo tài khoản thất bại", Toast.LENGTH_SHORT).show();
                     }
@@ -85,13 +88,14 @@ public class CreateActivity extends AppCompatActivity {
                     etUser.setError("Tài khoản đã tồn tại");
                     Toast.makeText(this, "Tài khoản đã tồn tại", Toast.LENGTH_SHORT).show();
                     check = 0;
-                }else {
-                    if (etND.getText().toString().equals(list.get(i).getTenND())){
-                        etND.setError("Tên đã tồn tại");
-                        Toast.makeText(this, "Tên đã tồn tại", Toast.LENGTH_SHORT).show();
-                        check = 0;
-                    }
                 }
+//                else {
+//                    if (etND.getText().toString().equals(list.get(i).getTenND())){
+//                        etND.setError("Tên đã tồn tại");
+//                        Toast.makeText(this, "Tên đã tồn tại", Toast.LENGTH_SHORT).show();
+//                        check = 0;
+//                    }
+//                }
             }
 
         }

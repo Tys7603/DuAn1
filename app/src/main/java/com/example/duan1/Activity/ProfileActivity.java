@@ -140,7 +140,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     public void name(){
-        SharedPreferences sharedPreferences = getSharedPreferences("remember", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences("rememberUser", MODE_PRIVATE);
         user = sharedPreferences.getString("user","");
         NguoiDung nguoiDung = nguoiDungDao.getId(user);
         String name = nguoiDung.getTenND();

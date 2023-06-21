@@ -17,16 +17,4 @@
         app:layout_constraintVertical_bias="0.434"
         app:srcCompat="@drawable/img_1" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ⓉⓨⓈⓈⓗⓞⓟ"
-        android:textColor="#EB6440"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

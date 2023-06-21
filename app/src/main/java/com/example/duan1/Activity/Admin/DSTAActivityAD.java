@@ -25,6 +25,9 @@ import com.example.duan1.SQLite.Dao.ThucAnDao;
 import com.example.duan1.SQLite.Model.ThucAn;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class DSTAActivityAD extends AppCompatActivity {
 
     RecyclerView rv;
@@ -34,6 +37,7 @@ public class DSTAActivityAD extends AppCompatActivity {
     AdminAdapterDSTA DSTAActivity;
     FloatingActionButton btnAdd;
     String id;
+    final String regex = "^[1-9][0-9]*$";
     @SuppressLint({"MissingInflatedId", "ResourceAsColor"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +78,7 @@ public class DSTAActivityAD extends AppCompatActivity {
                 btnCancel = dialog.findViewById(R.id.btnCancelAd);
 
 
+
                 btnCancel.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -84,18 +89,18 @@ public class DSTAActivityAD extends AppCompatActivity {
                 btnOk.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if (etTen.getText().toString().isEmpty() || etTien.getText().toString().isEmpty()){
-                            Toast.makeText(DSTAActivityAD.this, "Bạn cần nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
-                        }else {
+                        String ten = etTen.getText().toString();
+                        String tien = etTien.getText().toString();
+                        if (validate(ten, tien)) {
                             ThucAn thucAn = new ThucAn();
-                            thucAn.setTenTA(etTen.getText().toString());
-                            thucAn.setGiaTien(Integer.parseInt(etTien.getText().toString()));
+                            thucAn.setTenTA(ten);
+                            thucAn.setGiaTien(Integer.parseInt(tien));
                             thucAn.setMaLTA(Integer.parseInt(id));
-                            if (thucAnDao.insert(thucAn) > 0){
+                            if (thucAnDao.insert(thucAn) > 0) {
                                 Toast.makeText(DSTAActivityAD.this, "Thêm thành công", Toast.LENGTH_SHORT).show();
                                 dialog.dismiss();
                                 loadData();
-                            }else {
+                            } else {
                                 Toast.makeText(DSTAActivityAD.this, "Thêm thất bại", Toast.LENGTH_SHORT).show();
                             }
                         }
@@ -106,6 +111,21 @@ public class DSTAActivityAD extends AppCompatActivity {
         });
 
 
+    }
+
+    private boolean validate(String ten , String tien){
+        if (ten.isEmpty() || tien.isEmpty()){
+            Toast.makeText(DSTAActivityAD.this, "Bạn cần nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
+            return false;
+        } else {
+            Pattern pattern =Pattern.compile(regex);
+            Matcher matcher = pattern.matcher(tien);
+            if (!matcher.matches()){
+                Toast.makeText(this, "Bạn cần nhập số", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        }
+        return true;
     }
 
     public void loadData(){
